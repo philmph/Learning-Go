@@ -30,6 +30,6 @@ func main() {
 	if err2 == nil {
 		fmt.Printf("string to int: %v, %[1]T\n", atoi2)
 	} else {
-		fmt.Printf("string to int: %v, %[1]T. Erroroutput: %v\n", atoi2, err2)
+		fmt.Printf("string to int: %v, %[1]T. Erroroutput: %v, %[2]T\n", atoi2, err2)
 	}
 }
