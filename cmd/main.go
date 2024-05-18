@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	fmt.Printf("Pi is %g\n", math.Pi)
 }
