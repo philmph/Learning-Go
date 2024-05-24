@@ -9,4 +9,7 @@ func main() {
 	// In ./if.go
 	fmt.Println(ifhandling("No"))
 	fmt.Println(ifhandling("Yes"))
+
+	// In ./immutable_strings.go
+	immutable_string()
 }
