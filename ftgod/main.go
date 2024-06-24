@@ -9,18 +9,17 @@ type User struct {
 }
 
 func main() {
-	user := &User{
-		100,
-		"John",
-		true,
-	}
+	slice := make([]int, 5, 10)
+	sliceAlternative := []int{1, 2, 3, 4, 5}
+	array := [5]int{1, 2, 3, 4, 5}
 
-	var user2 *User = &User{
-		50,
-		"Bill",
-		false,
-	}
+	slice = append(slice, 6)
+	sliceAlternative = append(sliceAlternative, 6)
 
-	fmt.Printf("User: %v\n", *user)
-	fmt.Printf("User: %v\n", *user2)
+	newArray := append(array[:], 6)
+
+	fmt.Printf("%+v\n", slice)
+	fmt.Printf("%+v\n", sliceAlternative)
+	fmt.Printf("%+v\n", array)
+	fmt.Printf("%+v\n", newArray)
 }
