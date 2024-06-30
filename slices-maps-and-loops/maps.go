@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func maps() {
+func mapsFunc() {
 	users := map[int]string{1: "John", 2: "Paul", 3: "George", 4: "Ringo"}
 
 	fmt.Printf("1: Lenght: %d, Content: %+v\n", len(users), users)

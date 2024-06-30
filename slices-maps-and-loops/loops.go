@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func loops() {
+func loopsFunc() {
 	// Slices
 	mySlice := []string{"John", "Paul", "George", "Ringo"}
 
