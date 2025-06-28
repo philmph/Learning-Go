@@ -2,13 +2,17 @@ package main
 
 import "fmt"
 
+var (
+	myString string = "myString"
+)
+
 func main() {
 	users := make(map[string]int, 5)
 
 	users["philipp"] = 33
-	users["elsie"] = 3
+	users["thomas"] = 3
 
-	user := "elsie"
+	user := "thomas"
 
 	age, ok := users[user]
 	if !ok {
@@ -32,7 +36,7 @@ func main() {
 		fmt.Printf("User %v age: %v\n", k, age)
 	}
 
-	dogs := []string{"philipp", "elsie"}
+	dogs := []string{"wadu", "hek"}
 
 	for i, name := range dogs {
 		fmt.Printf("Index %d name: %v\n", i, name)
@@ -41,4 +45,6 @@ func main() {
 	slice := make([]int, 1)
 
 	fmt.Println(len(slice), slice[0])
+
+	fmt.Println(myString)
 }
