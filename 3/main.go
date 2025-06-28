@@ -37,4 +37,8 @@ func main() {
 	for i, name := range dogs {
 		fmt.Printf("Index %d name: %v\n", i, name)
 	}
+
+	slice := make([]int, 1)
+
+	fmt.Println(len(slice), slice[0])
 }
