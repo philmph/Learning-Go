@@ -27,4 +27,6 @@ func main() {
 	}
 
 	fmt.Println("Distance:", h.km)
+	fmt.Println("Distance:", (*h).km)
+	fmt.Printf("type: %T\naddress: %p\n%v\n", h, h, h)
 }
