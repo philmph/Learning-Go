@@ -7,4 +7,13 @@ func main() {
 	}
 
 	u.greet()
+	u.greetNoPointer()
+
+	uNoPointer := user{
+		name: "Elsie",
+		age:  3,
+	}
+
+	uNoPointer.greet()
+	uNoPointer.greetNoPointer()
 }
