@@ -16,7 +16,4 @@ func main() {
 
 	uNoPointer.greet()
 	uNoPointer.greetNoPointer()
-
-	// Style guide test
-	// VSCode config test
 }
