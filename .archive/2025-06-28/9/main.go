@@ -17,6 +17,10 @@ func newCustomMap[K comparable, V any]() *CustomMap[K, V] {
 	}
 }
 
+func foo[T any](s string, t T) {
+	fmt.Printf("Type: %T, Value: %s\n", t, s)
+}
+
 func main() {
 	m1 := newCustomMap[int, string]()
 	m1.Insert(1, "Hello")
@@ -25,4 +29,6 @@ func main() {
 	for k, v := range m1.data {
 		fmt.Printf("Key: %d, Value: %s\n", k, v)
 	}
+
+	foo("Hi", "Wut")
 }
