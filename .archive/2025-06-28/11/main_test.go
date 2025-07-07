@@ -9,7 +9,9 @@ func TestNewPlayer(t *testing.T) {
 	t.Log("Testing newPlayer")
 
 	expected := &Player{
-		Name: "Tester",
+		Alive:  true,
+		Health: 100,
+		Name:   "Tester",
 	}
 
 	result := newPlayer("Tester")
@@ -19,38 +21,55 @@ func TestNewPlayer(t *testing.T) {
 	}
 }
 
-func TestDamage(t *testing.T) {
+func TestTakeDamage(t *testing.T) {
 	t.Log("Testing takeDamage")
 
-	testPlayers := []*Player{
+	tests := []struct {
+		name           string
+		initialHealth  int
+		damage         int
+		expectedHealth int
+		expectedAlive  bool
+	}{
 		{
-			Alive:  true,
-			Health: 100,
-			Name:   "A",
+			name:           "normal damage",
+			initialHealth:  100,
+			damage:         30,
+			expectedHealth: 70,
+			expectedAlive:  true,
 		},
 		{
-			Alive:  true,
-			Health: 10,
-			Name:   "B",
+			name:           "damage that kills",
+			initialHealth:  50,
+			damage:         60,
+			expectedHealth: -10,
+			expectedAlive:  false,
+		},
+		{
+			name:           "exact lethal damage",
+			initialHealth:  50,
+			damage:         50,
+			expectedHealth: 0,
+			expectedAlive:  false,
 		},
 	}
 
-	for _, p := range testPlayers {
-		t.Run("taking damage", func(t *testing.T) {
-			expected := p.Health - 50
-			p.takeDamage(50)
-
-			if expected != p.Health {
-				t.Errorf("Expected health %d after damage, got %d", expected, p.Health)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			player := &Player{
+				Alive:  true,
+				Health: tt.initialHealth,
+				Name:   "TestPlayer",
 			}
-		})
 
-		t.Run("dying", func(t *testing.T) {
-			expected := p.Health >= 50
-			p.takeDamage(50)
+			player.takeDamage(tt.damage)
 
-			if expected != p.Alive {
-				t.Errorf("Expected alive status %t after damage, got %t", expected, p.Alive)
+			if player.Health != tt.expectedHealth {
+				t.Errorf("Expected health %d, got %d", tt.expectedHealth, player.Health)
+			}
+
+			if player.Alive != tt.expectedAlive {
+				t.Errorf("Expected alive status %t, got %t", tt.expectedAlive, player.Alive)
 			}
 		})
 	}
