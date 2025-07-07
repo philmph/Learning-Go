@@ -1,21 +1,57 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
-func TestCalculateSomething(t *testing.T) {
-	// Log information (only shows with -v flag or if test fails)
-	t.Log("This is a log message")
+func TestNewPlayer(t *testing.T) {
+	t.Log("Testing newPlayer")
 
-	// Test a condition
-	x, y := 5, 5
-	result := calculateSomething(x, y)
-	expected := 25
-
-	if result != expected {
-		t.Errorf("Expected %d, got %d", expected, result) // Report error but continue
+	expected := &Player{
+		Name: "Tester",
 	}
 
-	t.Logf("Passed")
+	result := newPlayer("Tester")
+
+	if !reflect.DeepEqual(expected, result) {
+		t.Errorf("Expected %+v, got %+v", expected, result)
+	}
+}
+
+func TestDamage(t *testing.T) {
+	t.Log("Testing takeDamage")
+
+	testPlayers := []*Player{
+		{
+			Alive:  true,
+			Health: 100,
+			Name:   "A",
+		},
+		{
+			Alive:  true,
+			Health: 10,
+			Name:   "B",
+		},
+	}
+
+	for _, p := range testPlayers {
+		t.Run("taking damage", func(t *testing.T) {
+			expected := p.Health - 50
+			p.takeDamage(50)
+
+			if expected != p.Health {
+				t.Errorf("Expected health %d after damage, got %d", expected, p.Health)
+			}
+		})
+
+		t.Run("dying", func(t *testing.T) {
+			expected := p.Health >= 50
+			p.takeDamage(50)
+
+			if expected != p.Alive {
+				t.Errorf("Expected alive status %t after damage, got %t", expected, p.Alive)
+			}
+		})
+	}
 }

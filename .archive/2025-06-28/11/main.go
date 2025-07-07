@@ -2,11 +2,38 @@ package main
 
 import "fmt"
 
-func calculateSomething(x, y int) int {
-	return x * y
+type Player struct {
+	Alive  bool
+	Health int
+	Name   string
+}
+
+func newPlayer(name string) *Player {
+	return &Player{
+		Alive:  true,
+		Health: 100,
+		Name:   name,
+	}
+}
+
+func (p *Player) takeDamage(damage int) {
+	p.Health -= damage
+
+	if p.Health <= 0 {
+		p.Alive = false
+	}
 }
 
 func main() {
-	x, y := 5, 5
-	fmt.Println("Hi: ", calculateSomething(x, y))
+	playerA := newPlayer("Agnes")
+
+	fmt.Printf("Defined player: %+v\n", playerA)
+
+	playerA.takeDamage(50)
+
+	fmt.Printf("Defined player: %+v\n", playerA)
+
+	playerA.takeDamage(50)
+
+	fmt.Printf("Defined player: %+v\n", playerA)
 }
