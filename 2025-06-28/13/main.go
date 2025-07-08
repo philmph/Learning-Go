@@ -16,5 +16,4 @@ func main() {
 	for msg := range msgch {
 		fmt.Println(msg)
 	}
-
 }
