@@ -16,4 +16,16 @@ func main() {
 	for msg := range msgch {
 		fmt.Println(msg)
 	}
+
+	var outside string
+
+	for {
+		outside = "Hello"
+		// inside := "Hello"
+		break
+	}
+
+	fmt.Println(outside)
+
+	// fmt.Println(inside)
 }
