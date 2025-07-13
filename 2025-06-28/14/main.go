@@ -5,24 +5,29 @@ import (
 	"strings"
 )
 
-func reverseString(s string) string {
-	words := strings.Split(s, " ")
+func reverseSentence(s string, sep string) string {
+	words := strings.Split(s, sep)
+
 	ret := make([]string, 0, len(words))
 
 	for _, w := range words {
-		runes := []rune(w)
-
-		for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-			runes[i], runes[j] = runes[j], runes[i]
-		}
-
-		ret = append(ret, string(runes))
+		ret = append(ret, string(reverseString(w)))
 	}
 
 	return strings.Join(ret, " ")
 }
 
+func reverseString(s string) string {
+	runes := []rune(s)
+
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
+}
+
 func main() {
 	s := "This is a sentence"
-	fmt.Println(reverseString(s))
+	fmt.Println(reverseSentence(s, " "))
 }
